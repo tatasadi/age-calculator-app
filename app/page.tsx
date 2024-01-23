@@ -7,6 +7,7 @@ import iconArrow from "@/public/images/icon-arrow.svg"
 import { z } from "zod"
 import { useState } from "react"
 import { calculateAge, validateDateInThePast } from "@/lib/utils"
+import CountUpAnimation from "@/components/CountUpAnimation"
 
 const currentYear = new Date().getFullYear()
 
@@ -171,13 +172,43 @@ export default function Home() {
         </form>
         <div className="mt-8">
           <h2 className="display-text">
-            <span>{displayData.year}</span> years
+            <span>
+              {displayData.year === "--" ? (
+                displayData.year
+              ) : (
+                <CountUpAnimation
+                  end={Number(displayData.year)}
+                  duration={1000}
+                />
+              )}
+            </span>{" "}
+            years
           </h2>
           <h2 className="display-text">
-            <span>{displayData.month}</span> month
+            <span>
+              {displayData.year === "--" ? (
+                displayData.year
+              ) : (
+                <CountUpAnimation
+                  end={Number(displayData.month)}
+                  duration={1000}
+                />
+              )}
+            </span>{" "}
+            month
           </h2>
           <h2 className="display-text">
-            <span>{displayData.day}</span> days
+            <span>
+              {displayData.year === "--" ? (
+                displayData.year
+              ) : (
+                <CountUpAnimation
+                  end={Number(displayData.day)}
+                  duration={1000}
+                />
+              )}
+            </span>{" "}
+            days
           </h2>
         </div>
       </div>
