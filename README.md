@@ -58,7 +58,7 @@ Users should be able to:
 
 ### Implementation time
 
-This challenge was completed over a span of 3 hours.
+This challenge was completed over a span of 4 hours.
 
 ## Author
 
