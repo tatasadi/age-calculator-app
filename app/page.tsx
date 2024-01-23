@@ -195,7 +195,7 @@ export default function Home() {
                 />
               )}
             </span>{" "}
-            month
+            months
           </h2>
           <h2 className="display-text">
             <span>
