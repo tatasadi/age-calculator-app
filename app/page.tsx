@@ -124,7 +124,7 @@ export default function Home() {
 
   return (
     <main className="flex h-full min-h-screen w-full max-w-7xl flex-col items-center px-4 pt-20 lg:min-h-0 lg:pt-32">
-      <h1 className="hidden">Calculate Age App</h1>
+      <h1 className="sr-only">Calculate Age App</h1>
       <div className="flex flex-col gap-8 rounded-3xl rounded-br-[6.25rem] bg-white px-6 py-12 lg:rounded-br-[12.5rem] lg:p-14">
         <form onSubmit={handleSubmit}>
           <div className="flex gap-4 lg:gap-8">

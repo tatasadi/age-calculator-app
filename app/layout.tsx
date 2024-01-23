@@ -30,7 +30,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${poppins.className} flex min-h-screen flex-col items-center justify-center bg-neutral-light-grey text-neutral-off-black`}
+        className={`${poppins.className} flex min-h-screen flex-col items-center justify-center bg-neutral-off-white text-neutral-off-black`}
       >
         {children}
       </body>
