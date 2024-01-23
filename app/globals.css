@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .footer-link {
+    @apply cursor-pointer underline;
+  }
+}
