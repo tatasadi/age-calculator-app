@@ -6,7 +6,7 @@ import Image from "next/image"
 import iconArrow from "@/public/images/icon-arrow.svg"
 import { z } from "zod"
 import { useState } from "react"
-import { validateDateInThePast } from "@/lib/utils"
+import { calculateAge, validateDateInThePast } from "@/lib/utils"
 
 const currentYear = new Date().getFullYear()
 
@@ -66,49 +66,6 @@ const formSchema = z
     },
   )
 
-type FormSchema = z.infer<typeof formSchema>
-
-const calculateAge = (data: FormSchema) => {
-  const today = new Date()
-  const birthDate = new Date(
-    Number(data.year),
-    Number(data.month) - 1,
-    Number(data.day),
-  )
-
-  // Calculate differences
-  let ageYears = today.getFullYear() - birthDate.getFullYear()
-  let ageMonths = today.getMonth() - birthDate.getMonth()
-  let ageDays = today.getDate() - birthDate.getDate()
-
-  // Adjust years and months if necessary
-  if (ageMonths < 0 || (ageMonths === 0 && ageDays < 0)) {
-    ageYears--
-    ageMonths = (ageMonths + 12) % 12
-  }
-
-  // Adjust days
-  if (ageDays < 0) {
-    const daysInPreviousMonth = new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      0,
-    ).getDate()
-    ageDays += daysInPreviousMonth
-    ageMonths--
-    if (ageMonths < 0) {
-      ageYears--
-      ageMonths += 12
-    }
-  }
-
-  return {
-    year: String(ageYears),
-    month: String(ageMonths),
-    day: String(ageDays),
-  }
-}
-
 const initFormState = { day: "", month: "", year: "" }
 const initDisplayData = { day: "--", month: "--", year: "--" }
 
@@ -137,7 +94,6 @@ export default function Home() {
       const dateValidation = validateDateInThePast(
         `${result.data.year}-${result.data.month.toString().padStart(2, "0")}-${result.data.day.toString().padStart(2, "0")}`,
       )
-      console.log(result, dateValidation, errors)
       if (!dateValidation.valid) {
         setErrors((prev) => ({
           ...prev,

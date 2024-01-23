@@ -49,3 +49,48 @@ export function validateDateInThePast(dateString: string): {
 
   return { valid: true }
 }
+
+export function calculateAge(data: {
+  day: number
+  month: number
+  year: number
+}) {
+  const today = new Date()
+  const birthDate = new Date(
+    Number(data.year),
+    Number(data.month) - 1,
+    Number(data.day),
+  )
+
+  // Calculate differences
+  let ageYears = today.getFullYear() - birthDate.getFullYear()
+  let ageMonths = today.getMonth() - birthDate.getMonth()
+  let ageDays = today.getDate() - birthDate.getDate()
+
+  // Adjust years and months if necessary
+  if (ageMonths < 0 || (ageMonths === 0 && ageDays < 0)) {
+    ageYears--
+    ageMonths = (ageMonths + 12) % 12
+  }
+
+  // Adjust days
+  if (ageDays < 0) {
+    const daysInPreviousMonth = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      0,
+    ).getDate()
+    ageDays += daysInPreviousMonth
+    ageMonths--
+    if (ageMonths < 0) {
+      ageYears--
+      ageMonths += 12
+    }
+  }
+
+  return {
+    year: String(ageYears),
+    month: String(ageMonths),
+    day: String(ageDays),
+  }
+}
