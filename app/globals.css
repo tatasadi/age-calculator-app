@@ -6,4 +6,12 @@
   .footer-link {
     @apply cursor-pointer underline;
   }
+
+  .display-text {
+    @apply text-[3.5rem] font-extrabold italic leading-[3.85rem] tracking-[0.07rem] lg:text-[6.5rem] lg:leading-[7.15rem] lg:-tracking-[0.13rem];
+  }
+
+  .display-text > span {
+    @apply text-primary-purple;
+  }
 }
